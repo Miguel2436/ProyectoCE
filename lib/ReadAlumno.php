@@ -1,7 +1,7 @@
 <?php
 	include 'conexion.php';
-	if(isset($_GET["idalumno"])){
-	$IdAlumno = $_GET["idalumno"];
+	if(isset($_POST["idalumno"])){
+	$IdAlumno = $_POST["idalumno"];
 	$select = "SELECT * FROM alumno WHERE IdAlumno = '$IdAlumno'";	
 	$resultado = mysqli_query($conexion,$select);
 	
