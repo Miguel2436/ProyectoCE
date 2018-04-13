@@ -5,11 +5,11 @@
 </HEAD>
 <BODY>
  <?php
-
+include 'conexion.php';
 $idAlumnov = $_POST['idAlumno'];
 $idMateriav = $_POST['IdMateria'];
 $idCalificacionv = $_POST['Calificacion'];
-$conexion = mysqli_connect("localhost","root","","sistemaescolar");
+
 
 $insertando = mysqli_query($conexion, "INSERT INTO cursa(IdAlumno,IdMateria,Calificacion) values('$idAlumnov','$idMateriav','$idCalificacionv');");
 if($insertando)
@@ -21,6 +21,6 @@ if($insertando)
 }
 mysqli_close($conexion);
 ?>
-   
+   <a  href="/sistemaescolar/insertar.php"> Regresar </a>
    </BODY>
 </HTML>

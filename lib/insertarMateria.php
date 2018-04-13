@@ -19,7 +19,7 @@
 
 
 <h1>
-<table bgcolor="13AB91" width="1350"> 
+<table bgcolor="13AB91" width="1350">  <a class=Botoninsertar href="/sistemaescolar/insertar.php"> Regresar </a>
         <tr> <th> <p style="color: White" >Insertar Materia </p></th> </tr>
     </table>
 </h1>

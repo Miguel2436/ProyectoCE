@@ -17,24 +17,31 @@
 			<?php
 				include 'conexion.php';
 				if(isset($_POST['IdAlumno'])) {
+					$Nombre = utf8_decode($_POST['Nombre']);
 					$IdAlumno = $_POST['IdAlumno'];
-					$QueryChecaAlumno = "SELECT IdAlumno FROM Alumno WHERE IdAlumno = '$IdAlumno'";
+					$Apellido_P = utf8_decode($_POST['Apellido_P']);
+					$Apellido_M = utf8_decode($_POST['Apellido_M']);
+					$QueryChecaAlumno = "SELECT IdAlumno FROM Alumno WHERE IdAlumno = '{$IdAlumno}'";
 					$ResultadoQueryChecaAlumno = mysqli_query($conexion, $QueryChecaAlumno);
 					if (mysqli_num_rows($ResultadoQueryChecaAlumno) > 0) {
-						if (isset($_POST['Nombre'])) {
-							$Nombre = utf8_decode($_POST['Nombre']);
-							$QueryUpdateNombre = "UPDATE Alumno SET Nombre = '".$Nombre."' WHERE IdAlumno = '$IdAlumno'";
+						
+						if ($Nombre!="") {
+							
+							$QueryUpdateNombre = "UPDATE Alumno SET Nombre = '".$Nombre."' WHERE IdAlumno = '{$IdAlumno}'";
 							if (!mysqli_query($conexion, $QueryUpdateNombre)) {
 								echo "<script type='text/javascript'>alert('".mysqli_error($conexion)."');</script>";
 							}
 						}
-						if (isset($_POST['Apellido_P'])) {
-							$Apellido_P = utf8_decode($_POST['Apellido_P']);
-							mysqli_query($conexion, "UPDATE Alumno SET 'Apellido_P' = ''$Apellido_P'' WHERE IdAlumno = '$IdAlumno'");
+						if ($Apellido_P != "") {
+							
+							$QueryUpdateApp= "UPDATE Alumno SET Apellido_P = '{$Apellido_P}' WHERE IdAlumno = '{$IdAlumno}'";
+							if (!mysqli_query($conexion, $QueryUpdateApp)) {
+								echo "<script type='text/javascript'>alert('".mysqli_error($conexion)."');</script>";
+							}
 						}
-						if (isset($_POST['Apellido_M'])) {
-							$Apellido_M = utf8_decode($_POST['Apellido_M']);
-							mysqli_query($conexion, "UPDATE Alumno SET 'Apellido_M' = ''$Apellido_M'' WHERE IdAlumno = '$IdAlumno'");
+						if ($Apellido_M != "") {
+							
+							mysqli_query($conexion, "UPDATE Alumno SET Apellido_M = '{$Apellido_M}' WHERE IdAlumno = '$IdAlumno'");
 						}			
 					}
 					else {

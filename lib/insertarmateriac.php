@@ -5,13 +5,12 @@
 </HEAD>
 <BODY>
  <?php
-
+include 'conexion.php';
 $Nombrev = $_POST['nombre'];
 
-$conexion = mysqli_connect("localhost","root","","sistemaescolar");
 
-$insertando = mysqli_query($conexion, "INSERT INTO materia(nombre)values('$Nombrev');");
-if($insertado)
+$insertando = mysqli_query($conexion, "INSERT INTO materia(Nombre)values('$Nombrev');");
+if($insertando)
 {
 
 print("Insertado, todo verde");
@@ -20,6 +19,6 @@ print("No insertado");
 }
 mysqli_close($conexion);
 ?>
-   
+   <a  href="/sistemaescolar/insertar.php"> Regresar </a>
    </BODY>
 </HTML>

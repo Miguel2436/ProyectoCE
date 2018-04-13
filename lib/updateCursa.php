@@ -18,23 +18,28 @@
 				include 'conexion.php';
 				if(isset($_POST['IdCursa'])) {
 					$IdCursa = $_POST['IdCursa'];
+					$IdMateria = utf8_decode($_POST['IdMateria']);
+					$Calificacion = utf8_decode($_POST['Calificacion']);
 					$QueryChecaCursa = "SELECT IdCursa FROM Cursa WHERE IdCursa = '$IdCursa'";
 					$ResultadoQueryChecaCursa = mysqli_query($conexion, $QueryChecaCursa);
 					if (mysqli_num_rows($ResultadoQueryChecaCursa) > 0) {
 						if (isset($_POST['IdAlumno'])) {
 							$IdAlumno = utf8_decode($_POST['IdAlumno']);
-							$QueryUpdateIdAlumno = "UPDATE Cursa SET IdAlumno = '".$IdAlumno."' WHERE IdCursa = '$IdCursa'";
-							if (!mysqli_query($conexion, $QueryUpdateIdAlumno)) {
-								echo "<script type='text/javascript'>alert('".mysqli_error($conexion)."');</script>";
-							}
+							$QueryUpdateIdAlumno = "UPDATE Cursa SET IdAlumno = '{$IdAlumno}' WHERE IdCursa = '$IdCursa'";
+							mysqli_query($conexion, $QueryUpdateIdAlumno);
+								
+							
 						}
-						if (isset($_POST['IdMateria'])) {
-							$IdMateria = utf8_decode($_POST['IdMateria']);
-							mysqli_query($conexion, "UPDATE Cursa SET 'IdMateria' = ''$IdMateria'' WHERE IdCursa = '$IdCursa'");
+						if ($IdMateria != "") {
+							
+							$QueryUpdateIdMateria="UPDATE Cursa SET IdMateria = '{$IdMateria}' WHERE IdCursa = '$IdCursa'";
+							mysqli_query($conexion, $QueryUpdateIdMateria);
+								
+							
 						}
-						if (isset($_POST['Calificacion'])) {
-							$Calificacion = utf8_decode($_POST['Calificacion']);
-							mysqli_query($conexion, "UPDATE Cursa SET 'Calificacion' = ''$Calificacion'' WHERE IdCursa = '$IdCursa'");
+						if ($Calificacion != "") {
+							
+							mysqli_query($conexion, "UPDATE Cursa SET Calificacion = '{$Calificacion}' WHERE IdCursa = '$IdCursa'");
 						}			
 					}
 					else {
@@ -58,8 +63,8 @@
 			<form align='center' action="UpdateCursa.php" method="POST">
 				<input type="text" name="IdCursa" placeholder="IdCursa">
 				<input type="text" name="IdAlumno" placeholder="IdAlumno">
-				<input type="text" name="IdMateria" placeholder="ApellidoPaterno">
-				<input type="text" name="Calificacion" placeholder="ApellidoMaterno"><br>
+				<input type="text" name="IdMateria" placeholder="IdMateria">
+				<input type="text" name="Calificacion" placeholder="Calificacion"><br>
 				<input type="submit" name="Modificar" value="Modificar">
 			</form><br>
 			<form align='center' action="/sistemaescolar/Update.php">
