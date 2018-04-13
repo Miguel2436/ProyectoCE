@@ -7,7 +7,7 @@
 <head>
   <title>CRUD: Sistema escolar</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="css/estilo2.css">
+  <link rel="stylesheet" type="text/css" href="css/estilo.css">
   <meta name="keywords" content="">
   <meta charset="utf-8">
 </head>
