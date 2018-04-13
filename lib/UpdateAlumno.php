@@ -13,6 +13,7 @@
 <body>
 	<div class="iniciarSesion">
     	<div class="contenformulario">
+    		<h1>Modificar Alumnos</h1>
 			<?php
 				include 'conexion.php';
 				if(isset($_POST['IdAlumno'])) {
@@ -56,10 +57,14 @@
 				<input type="text" name="IdAlumno" placeholder="IdAlumno">
 				<input type="text" name="Nombre" placeholder="Nombre">
 				<input type="text" name="Apellido_P" placeholder="ApellidoPaterno">
-				<input type="text" name="Apellido_M" placeholder="ApellidoMaterno">
+				<input type="text" name="Apellido_M" placeholder="ApellidoMaterno"><br>
 				<input type="submit" name="Modificar" value="Modificar">
+			</form><br>
+			<form align='center' action="/sistemaescolar/Update.php">
+				<input type="submit" name="" value="Regresar">
 			</form>
 		</div>
 	</div>
 </body>
 </html>
+
