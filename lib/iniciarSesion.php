@@ -1,5 +1,7 @@
 <?php 
+
 	include 'conexion.php';
+	
 	if(isset($_POST['user'])&&isset($_POST['pass']))
 	{
 
@@ -22,13 +24,15 @@
 					//echo "Bienvenido";
 				}
 				else
-			{	
-				echo "<script type='text/javascript'>alert('Su contraseña no coincide. '); window.location.href = '/sistemaescolar/iniciarSesion.html';</script>";			
-			}
-			}else{
-					echo "no";	
-					echo "<script type='text/javascript'>alert('Su contraseña no coincide. '); window.location.href = '/sistemaescolar/iniciarSesion.html';</script> ";
+				{	
+					echo "<script type='text/javascript'>alert('Su contraseña no coincide. '); window.location.href = '/sistemaescolar/iniciarSesion.html';</script>";			
 				}
+			}
+			else
+			{
+				echo "no";	
+				echo "<script type='text/javascript'>alert('Su contraseña no coincide. '); window.location.href = '/sistemaescolar/iniciarSesion.html';</script> ";
+			}
 		}
 		else
 		{

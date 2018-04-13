@@ -14,7 +14,18 @@ body
 {
 	text-align: center;
 	user-select: none; 
-	margin-top: 12%;
+	margin-top: 7%;
+	background-color: #1E8B90;
+	padding: 40px;
+	border-top: 5px #085C61 solid;
+	border-bottom: 5px #085C61 solid;
+}
+
+.contenformulario2
+{
+	text-align: center;
+	user-select: none; 
+	margin-top: 10%;
 	background-color: #1E8B90;
 	padding: 40px;
 	border-top: 5px #085C61 solid;
