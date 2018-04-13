@@ -32,7 +32,7 @@
         				</form>
         			</li>
         			<li class="registrar">
-        				<form action="http://google.com">
+        				<form action="Update.php">
         					<input type="submit" value="Modificar"/>
         				</form>
         			</li>
