@@ -42,7 +42,7 @@
 		<?php
 			include 'lib/readCursa.php';
 		?>
-		<form action="deleteCursa.php" method="post">
+		<form action="lib/deleteCursa.php" method="post">
 			<select name="IdCursa">
 				<?php  
 				include 'lib/conexion.php';
@@ -64,7 +64,7 @@
 		<?php
 			include 'lib/readMateria.php';
 		?>
-		<form action="deleteMateria.php" method="post">
+		<form action="lib/deleteMateria.php" method="post">
 			<select name="IdMateria">   
 			<?php  
 				include 'lib/conexion.php';
