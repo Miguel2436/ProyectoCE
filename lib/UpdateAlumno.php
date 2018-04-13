@@ -4,8 +4,8 @@
 <html>
 <head>
 	<title>Modificar Alumno</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/estilo2.css">
+	<link rel="stylesheet" type="text/css" href="/sistemaescolar/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/sistemaescolar/css/estilo2.css">
 	<meta name="keywords" content="">
  	<meta charset="utf-8">
  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -67,4 +67,3 @@
 	</div>
 </body>
 </html>
-
