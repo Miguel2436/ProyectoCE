@@ -3,7 +3,7 @@
 <head>
 	<title>Tabla Alumno</title>
 </head>
-<body>
+<body style="margin-top: 13vh;">
 	<form align="center" action="ReadTableAlumno.php">
 	<input type="submit" value="Actualizar">	
 	</form>
