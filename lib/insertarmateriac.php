@@ -1,4 +1,9 @@
-
+<?php session_start();?>
+<?php 
+	include 'seguridad.php';
+	checkSID();
+	if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <HTML>
 <HEAD>
 <TITLE>Alumno insertado</TITLE>

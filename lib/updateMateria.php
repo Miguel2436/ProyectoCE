@@ -1,5 +1,9 @@
 <?php session_start();?>
-<?php if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}?>
+<?php 
+	include 'seguridad.php';
+	checkSID();
+	if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +37,7 @@
 						echo "<script type='text/javascript'>alert('IdMateria erroneo');</script>";
 					}
 				}
-				include 'readMateria.php';
+				ReadMateria();
 				/*$QuerySelectMateria = "SELECT * FROM Materia";
 				$ResultadoQuerySelectMateria = mysqli_query($conexion, $QuerySelectMateria);
 				

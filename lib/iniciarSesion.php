@@ -20,6 +20,9 @@
 				{
 					session_start();
 					$_SESSION['user']=utf8_encode($user);
+					$_SESSION['SID'] = rand();
+					$Query = "UPDATE login SET sid = '{$_SESSION['SID']}' WHERE User = '{$user}'";
+					mysqli_query($conexion, $Query);
 					echo "<script type='text/javascript'>alert('Bienvenido ');window.location.href = '/sistemaescolar/index.php';</script>";
 					//echo "Bienvenido";
 				}

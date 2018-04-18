@@ -1,5 +1,9 @@
 <?php session_start();?>
-<?php if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}?>
+<?php 
+	include 'seguridad.php';
+	checkSID();
+	if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +51,7 @@
 					}
 				}
 
-				include 'readCursa.php';
+				ReadCursa();
 				/*$QuerySelectCursa = "SELECT * FROM Cursa";
 				$ResultadoQuerySelectCursa = mysqli_query($conexion, $QuerySelectCursa);
 				

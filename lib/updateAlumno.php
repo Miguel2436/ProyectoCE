@@ -1,5 +1,9 @@
 <?php session_start();?>
-<?php if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}?>
+<?php 
+	include 'seguridad.php';
+	checkSID();
+	if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +52,7 @@
 						echo "<script type='text/javascript'>alert('IdAlumno erroneo');</script>";
 					}
 				}
-				include 'readAlumno.php';
+				ReadAlumno();
 				/*$QuerySelectAlumno = "SELECT * FROM Alumno";
 				$ResultadoQuerySelectAlumno = mysqli_query($conexion, $QuerySelectAlumno);
 				

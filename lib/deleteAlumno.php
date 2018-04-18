@@ -1,3 +1,9 @@
+<?php session_start();?>
+<?php 
+	include 'seguridad.php';
+	checkSID();
+	if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <?php
 	include 'conexion.php';
 	$IdAlumno = $_POST['IdAlumno'];

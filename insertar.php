@@ -1,6 +1,9 @@
 <?php session_start();?>
-<?php if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}?>
-
+<?php 
+  include 'lib/seguridad.php';
+  checkSID();
+  if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <!DOCTYPE html>
 <html>
 
