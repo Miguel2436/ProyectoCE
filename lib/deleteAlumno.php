@@ -5,7 +5,9 @@
 	if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
 ?>
 <?php
+
 	include 'conexion.php';
+if(isset($_POST["IdAlumno"])){	
 	$IdAlumno = $_POST['IdAlumno'];
 
 	$consulta = mysqli_query($conexion, "DELETE FROM alumno where IdAlumno ='{$IdAlumno}'");
@@ -17,4 +19,6 @@
 	}
 
 	mysqli_close($conexion);
+}else{
+	echo "<script type='text/javascript'>alert(No se encuentra el id solicitado. '); window.location.href = '/sistemaescolar/delete.php';</script> ";
 ?>
