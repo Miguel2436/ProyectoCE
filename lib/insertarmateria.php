@@ -24,6 +24,7 @@
 <body bgcolor="02E0C9">
 
 <?php 
+    ReadMateria();
     include 'conexion.php';
     include 'log.php'
     if(isset($_POST['nombre']))
