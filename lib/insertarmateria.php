@@ -24,23 +24,28 @@
 <body bgcolor="02E0C9">
 
 <?php 
-include 'conexion.php';
-if(isset($_POST['nombre'])){
-$Nombrev =utf8_decode( $_POST['nombre']);
+    include 'conexion.php';
+    include 'log.php'
+    if(isset($_POST['nombre']))
+    {
+        $Nombrev =utf8_decode( $_POST['nombre']);
+        $query="INSERT INTO materia(Nombre)values('$Nombrev');";
 
 
-if($Nombrev!=""){
-$insertando = mysqli_query($conexion, "INSERT INTO materia(Nombre)values('$Nombrev');");
-if($insertando)
-{
-
-print("Insertado, todo verde");
-} else {
-print("No insertado");
-}
-}
-}
-mysqli_close($conexion);
+        if($Nombrev!="")
+        {
+            $insertando = mysqli_query($conexion, $query);
+            indertLog($query);
+            if($insertando)
+            {
+                echo"<script type='text/javascript'>alert('Inserción realizada correctamente'); window.location.href = '/sistemaescolar/insertar.php';</script>";
+            } else 
+            {
+                  echo"<script type='text/javascript'>alert('Error inesperado '); window.location.href = '/sistemaescolar/insertar.php';</script>";
+            }
+        }
+    }
+    mysqli_close($conexion);
 ?>
 
 <h1>
