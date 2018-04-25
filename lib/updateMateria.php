@@ -20,6 +20,7 @@
     		<h1>Modificar Materia</h1>
 			<?php
 				include 'conexion.php';
+				include 'log.php'
 				if(isset($_POST['IdMateria'])) {
 					$IdMateria = $_POST['IdMateria'];
 					$QueryChecaMateria = "SELECT IdMateria FROM materia WHERE IdMateria = '$IdMateria'";
@@ -27,8 +28,8 @@
 					if (mysqli_num_rows($ResultadoQueryChecaMateria) > 0) {
 						if (isset($_POST['Nombre'])) {
 							$Nombre = utf8_decode($_POST['Nombre']);
-							$QueryUpdateNombre = "UPDATE materia SET Nombre = '".$Nombre."' WHERE IdMateria = '$IdMateria'";
-							if (!mysqli_query($conexion, $QueryUpdateNombre)) {
+							$query = "UPDATE materia SET Nombre = '".$Nombre."' WHERE IdMateria = '$IdMateria'";
+							if (!mysqli_query($conexion, $query)) {
 								echo "<script type='text/javascript'>alert('".mysqli_error($conexion)."');</script>";
 							}
 						}			
@@ -49,20 +50,7 @@
 				echo "</table>";*/
 			?>
 			<form align='center' action="UpdateMateria.php" method="POST">
-				Id Materia: <select name="IdMateria">
-					<?php
-						//include 'lib/conexion.php';
-
-						$sql = "SELECT IdMateria FROM materia";
-						$result = mysqli_query($conexion,$sql);
-						  
-						for($i=0; $i<mysqli_num_rows($result); $i++){
-							$fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
-							$IdMateria = $fila['IdMateria'];
-							echo "<option value='$IdMateria'>$IdMateria ";
-						}
-					?>
-				</select>
+				<input type="text" name="IdMateria" placeholder="IdMateria">
 				<input type="text" name="Nombre" placeholder="Nombre"><br>
 				<input type="submit" name="Modificar" value="Modificar">
 			</form><br>
