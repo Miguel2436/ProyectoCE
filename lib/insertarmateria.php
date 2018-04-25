@@ -36,7 +36,7 @@
         if($Nombrev!="")
         {
             $insertando = mysqli_query($conexion, $query);
-            indertLog($query);
+            insertLog($query);
             if($insertando)
             {
                 echo"<script type='text/javascript'>alert('Inserción realizada correctamente'); window.location.href = '/sistemaescolar/insertar.php';</script>";
