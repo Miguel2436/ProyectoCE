@@ -10,6 +10,7 @@
 </HEAD>
 <BODY>
  <?php
+ReadAlumno();
 include 'conexion.php';
 $Nombrev = $_POST['nombre'];
 $ApellidoPv = $_POST['ApellidoP'];
