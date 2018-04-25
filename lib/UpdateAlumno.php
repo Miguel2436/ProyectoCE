@@ -20,7 +20,6 @@
     		<h1>Modificar Alumnos</h1>
 			<?php
 				include 'conexion.php';
-				include 'log.php'
 				if(isset($_POST['IdAlumno'])) {
 					$Nombre = utf8_decode($_POST['Nombre']);
 					$IdAlumno = $_POST['IdAlumno'];
@@ -45,10 +44,8 @@
 							}
 						}
 						if ($Apellido_M != "") {
-							$query="UPDATE Alumno SET Apellido_M = '{$Apellido_M}' WHERE IdAlumno = '$IdAlumno'";
 							
-							mysqli_query($conexion,$query );
-							indertLog($query);
+							mysqli_query($conexion, "UPDATE Alumno SET Apellido_M = '{$Apellido_M}' WHERE IdAlumno = '$IdAlumno'");
 						}			
 					}
 					else {

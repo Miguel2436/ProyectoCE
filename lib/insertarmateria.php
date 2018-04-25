@@ -26,7 +26,7 @@
 <?php 
     ReadMateria();
     include 'conexion.php';
-    include 'log.php'
+
     if(isset($_POST['nombre']))
     {
         $Nombrev =utf8_decode( $_POST['nombre']);

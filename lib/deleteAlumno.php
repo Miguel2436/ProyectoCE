@@ -6,12 +6,12 @@
 ?>
 <?php
 	include 'conexion.php';
-	include 'log.php';
+	
 if(isset($_POST["IdAlumno"])){	
 	$IdAlumno = $_POST['IdAlumno'];
 	$query = "DELETE FROM alumno where IdAlumno ='{$IdAlumno}'";
 	$consulta = mysqli_query($conexion,$query );
-	indertLog($query);
+	insertLog($query);
 	if($consulta){
 		echo"<script type='text/javascript'>alert('Registro de alumno eliminado'); window.location.href = '/sistemaescolar/delete.php';</script>";
 	}else{

@@ -6,7 +6,6 @@
 ?>
 <?php
 	include 'conexion.php';
-	include 'log.php';
 	if(isset($_POST["IdCursa"])){	
 		$IdCursa = $_POST['IdCursa'];
 		$query =  "DELETE FROM cursa where IdCursa ='{$IdCursa}'";

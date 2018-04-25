@@ -1,9 +1,9 @@
 <?php
-	
+	include 'log.php';
 	function checkSID() 
 	{
 		include 'conexion.php';
-		include 'log.php';
+	
 		$user = utf8_decode($_SESSION['user']);
 		$Query = "SELECT sid FROM login WHERE User = '{$user}'";
 		$ResultadoSID = mysqli_query($conexion, $Query);
@@ -16,7 +16,7 @@
 
 	function ReadAlumno() 
 	{
-		include 'log.php';
+		
 
 		echo "<table align='center'><tr><th style='border: 1px solid black'>IdAlumno</th><th style='border: 1px solid black'>Nombre</th>";
 		echo "<th style='border: 1px solid black'>Apellido Paterno</th><th style='border: 1px solid black'>Apellido Materno</th></tr>";
@@ -46,7 +46,7 @@
 
 	function ReadCursa() 
 	{
-		include 'log.php';
+		
 
 		echo "<table align='center'><tr><th style='border: 1px solid black'>IdCursa</th><th style='border: 1px solid black'>IdAlumno</th><th style='border: 1px solid black'>IdMateria</th><th style='border: 1px solid black'>Calificacion</th></tr>;";
 		include 'conexion.php';
@@ -71,7 +71,7 @@
 
 	function ReadMateria() 
 	{
-		include 'log.php';
+		
 
 		echo "<table align='center'><tr><th style='border: 1px solid black'>IdMateria</th><th style='border: 1px solid black'>Materia</th></tr>";
 		include 'conexion.php';
