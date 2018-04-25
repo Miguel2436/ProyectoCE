@@ -27,6 +27,7 @@
 
 
      <?php
+    ReadCursa();
     include 'conexion.php';
     if(isset($_POST['idAlumno']))
     {
