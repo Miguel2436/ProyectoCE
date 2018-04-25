@@ -34,6 +34,7 @@
 </h1>
 
 <?php
+        ReadAlumno();
         include 'conexion.php';
        if(isset($_POST['nombre'])){
         $Nombrev = utf8_decode($_POST['nombre']);
