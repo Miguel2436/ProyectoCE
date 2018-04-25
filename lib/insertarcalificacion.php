@@ -77,9 +77,38 @@
 
         <div>
             <form action="insertarcalificacion.php" method="post">
-        <h4>Id Alumno: <input type="" name="idAlumno"></h4> 
+        <h4>Id Alumno: <select name="idAlumno">
+                <?php
+                    $sql = "SELECT IdAlumno FROM alumno";
+                    $result = mysqli_query($conexion,$sql);
+                      
+                    for($i=0; $i<mysqli_num_rows($result); $i++){
+                        $fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                        $IdAlumno = $fila['IdAlumno'];
+                        echo "<option value='$IdAlumno'>$IdAlumno ";
+                    }
+                ?>
+            </select>
+        </h4>
             <table>
-                    <tr><th>IdMateria: <input type="" name="IdMateria"></th><th>Calificacion: <input type="" name="Calificacion" pattern="[0-9]+" title="El campo sólo puede contener números."></th></tr>           
+                <tr>
+                    <th>IdMateria: 
+                        <select name="IdMateria">
+                            <?php
+                                $sql = "SELECT IdMateria FROM materia";
+                                $result = mysqli_query($conexion, $sql);
+                                  
+                                for($i=0; $i<mysqli_num_rows($result); $i++){
+                                    $fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                                    $IdMateria = $fila['IdMateria'];
+                                    echo "<option value='$IdMateria'>$IdMateria ";
+                                }
+                            ?>
+                        </select>
+                    </th>
+                    <th>Calificacion: <input type="" name="Calificacion" pattern="[0-9]+" title="El campo sólo puede contener números.">
+                    </th>
+                </tr>           
             </table>
               
               <input class="Botoninsertar" type = "submit">

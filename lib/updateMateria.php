@@ -49,7 +49,20 @@
 				echo "</table>";*/
 			?>
 			<form align='center' action="UpdateMateria.php" method="POST">
-				<input type="text" name="IdMateria" placeholder="IdMateria">
+				Id Materia: <select name="IdMateria">
+					<?php
+						//include 'lib/conexion.php';
+
+						$sql = "SELECT IdMateria FROM materia";
+						$result = mysqli_query($conexion,$sql);
+						  
+						for($i=0; $i<mysqli_num_rows($result); $i++){
+							$fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
+							$IdMateria = $fila['IdMateria'];
+							echo "<option value='$IdMateria'>$IdMateria ";
+						}
+					?>
+				</select>
 				<input type="text" name="Nombre" placeholder="Nombre"><br>
 				<input type="submit" name="Modificar" value="Modificar">
 			</form><br>

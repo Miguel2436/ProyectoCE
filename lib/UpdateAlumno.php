@@ -44,9 +44,8 @@
 							}
 						}
 						if ($Apellido_M != "") {
-							$query="UPDATE Alumno SET Apellido_M = '{$Apellido_M}' WHERE IdAlumno = '$IdAlumno'";
-							mysqli_query($conexion,$query );
-							insertLog($query);
+							
+							mysqli_query($conexion, "UPDATE Alumno SET Apellido_M = '{$Apellido_M}' WHERE IdAlumno = '$IdAlumno'");
 						}			
 					}
 					else {
@@ -67,7 +66,20 @@
 				echo "</table>";*/
 			?>
 			<form align='center' action="UpdateAlumno.php" method="POST">
-				<input type="text" name="IdAlumno" placeholder="IdAlumno" pattern="[0-9]+" title="El campo sólo puede contener números.">
+				<select name="IdAlumno">
+					<?php  
+						//include 'lib/conexion.php';
+
+						$sql = "SELECT IdAlumno FROM alumno";
+						$result = mysqli_query($conexion,$sql);
+						  
+						for($i=0; $i<mysqli_num_rows($result); $i++){
+							$fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
+							$IdAlumno = $fila['IdAlumno'];
+							echo "<option value='$IdAlumno'>$IdAlumno ";
+						}
+					?>
+				</select>
 				<input type="text" name="Nombre" placeholder="Nombre" pattern="[A-Za-z Ññ Á-Úá-ú]+" title="El campo sólo puede contener letras.">
 				<input type="text" name="Apellido_P" placeholder="ApellidoPaterno" pattern="[A-Za-z Ññ Á-Úá-ú]+" title="El campo sólo puede contener letras.">
 				<input type="text" name="Apellido_M" placeholder="ApellidoMaterno" pattern="[A-Za-z Ññ Á-Úá-ú]+" title="El campo sólo puede contener letras."><br>
