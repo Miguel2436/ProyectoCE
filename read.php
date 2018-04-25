@@ -1,3 +1,9 @@
+<?php session_start();?>
+<?php 
+	include 'lib/seguridad.php';
+	checkSID();
+	if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,17 +24,17 @@
 		</div>
 		<h3>Calificaciones:</h3>
 		<?php
-			include 'lib/readCursa.php';
+			ReadCursa();
 		?>
 	
 		<h3>Alumnos:</h3>
 		<?php
-			include 'lib/readAlumno.php';
+			ReadAlumno();
 		?>
 	
 		<h3>Materias:</h3>
 		<?php
-			include 'lib/readMateria.php';
+			ReadMateria();
 		?>
 	</div>
 </body>

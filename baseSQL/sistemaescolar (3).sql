@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-04-2018 a las 18:37:43
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.8
+-- Tiempo de generación: 20-04-2018 a las 17:00:20
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -35,25 +33,6 @@ CREATE TABLE `alumno` (
   `Apellido_M` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `alumno`
---
-
-INSERT INTO `alumno` (`IdAlumno`, `Nombre`, `Apellido_P`, `Apellido_M`) VALUES
-(1, 'Jesus ', 'Piña', 'Garcia'),
-(2, 'Marcos Gerardo', 'De la Cruz', 'Orozco'),
-(3, 'Rafael Alejandro', 'Crespo', 'Ozuna'),
-(4, 'José Miguel ', 'Peréz', 'Gonzalez'),
-(5, 'Miguel Angel ', 'Nuño ', 'Aguila'),
-(6, 'María Fernanda', 'Gonzalez', 'Lonzano'),
-(7, 'Mónica Daniela ', 'Gómez', 'Gómez'),
-(8, 'Salma Katherine', 'Martínez', 'Hernández'),
-(9, 'Grecia Isabel', 'Lasso', 'López'),
-(10, 'Leonardo Antonio', 'Martínez', 'Ortega'),
-(11, 'Diego Arturo', 'Hernández', 'Elias'),
-(12, 'Francisco Daniel', 'Castellanos ', 'Miranda'),
-(13, 'Alan Ricardo', 'López', 'Jauregui');
-
 -- --------------------------------------------------------
 
 --
@@ -67,19 +46,19 @@ CREATE TABLE `cursa` (
   `Calificacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `cursa`
+-- Estructura de tabla para la tabla `log`
 --
 
-INSERT INTO `cursa` (`IdCursa`, `IdAlumno`, `IdMateria`, `Calificacion`) VALUES
-(1, 4, 3, 70),
-(2, 7, 5, 90),
-(3, 6, 3, 99),
-(4, 8, 2, 90),
-(5, 1, 5, 85),
-(6, 2, 3, 83),
-(7, 5, 2, 86),
-(8, 3, 5, 79);
+CREATE TABLE `log` (
+  `IdLog` int(11) NOT NULL,
+  `Date` datetime NOT NULL,
+  `User` int(11) NOT NULL,
+  `Query` text NOT NULL,
+  `IPaddress` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -90,27 +69,29 @@ INSERT INTO `cursa` (`IdCursa`, `IdAlumno`, `IdMateria`, `Calificacion`) VALUES
 CREATE TABLE `login` (
   `IdLogin` int(11) NOT NULL,
   `User` varchar(30) NOT NULL,
-  `Password` varchar(20) NOT NULL
+  `Password` varchar(20) NOT NULL,
+  `sid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `login`
 --
 
-INSERT INTO `login` (`IdLogin`, `User`, `Password`) VALUES
-(1, 'Piña', 'piña'),
-(2, 'Trapos', 'trapos'),
-(3, 'Jose Miguel', 'josemiguel'),
-(4, 'Alan', 'alan'),
-(5, 'Alex', 'alex'),
-(6, 'Daniel', 'daniel'),
-(7, 'Miguel', 'miguel'),
-(8, 'Dogo', 'dogo'),
-(9, 'Grecia', 'grecia'),
-(10, 'Leonardo', 'leonardo'),
-(11, 'Fer', 'fer'),
-(12, 'Mony', 'mony'),
-(13, 'Kate', 'kate');
+INSERT INTO `login` (`IdLogin`, `User`, `Password`, `sid`) VALUES
+(1, 'Piña', 'piña', 1055566784),
+(2, 'Trapos', 'trapos', 1845898728),
+(3, 'Jose Miguel', 'josemiguel', 1835522511),
+(4, 'Alan', 'alan', 558071664),
+(5, 'Alex', 'alex', 1728570346),
+(6, 'Daniel', 'daniel', NULL),
+(7, 'Miguel', 'miguel', 715304909),
+(8, 'Dogo', 'dogo', 381451262),
+(9, 'Grecia', 'grecia', 1477833330),
+(10, 'Leonardo', 'leonardo', 266118018),
+(11, 'Fer', 'fer', 1729215189),
+(12, 'Mony', 'mony', 238428856),
+(13, 'Kate', 'kate', 516427773),
+(14, 'Faty', 'faty', 657985914);
 
 -- --------------------------------------------------------
 
@@ -128,11 +109,8 @@ CREATE TABLE `materia` (
 --
 
 INSERT INTO `materia` (`IdMateria`, `Nombre`) VALUES
-(1, 'Matemáticas'),
-(2, 'Inglés'),
-(3, 'Programación Avanzada'),
-(4, 'Sistemas Embebidos'),
-(5, 'Sistemas Distribuidos');
+(23, 'Mate V'),
+(24, 'Mate VI');
 
 --
 -- Índices para tablas volcadas
@@ -151,6 +129,13 @@ ALTER TABLE `cursa`
   ADD PRIMARY KEY (`IdCursa`),
   ADD KEY `IdAlumno` (`IdAlumno`),
   ADD KEY `IdMateria` (`IdMateria`);
+
+--
+-- Indices de la tabla `log`
+--
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`IdLog`),
+  ADD KEY `User` (`User`);
 
 --
 -- Indices de la tabla `login`
@@ -172,22 +157,27 @@ ALTER TABLE `materia`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `IdAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IdAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT de la tabla `cursa`
 --
 ALTER TABLE `cursa`
-  MODIFY `IdCursa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdCursa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+--
+-- AUTO_INCREMENT de la tabla `log`
+--
+ALTER TABLE `log`
+  MODIFY `IdLog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `login`
 --
 ALTER TABLE `login`
-  MODIFY `IdLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IdLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `IdMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- Restricciones para tablas volcadas
 --
@@ -198,7 +188,12 @@ ALTER TABLE `materia`
 ALTER TABLE `cursa`
   ADD CONSTRAINT `cursa_ibfk_1` FOREIGN KEY (`IdAlumno`) REFERENCES `alumno` (`IdAlumno`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cursa_ibfk_2` FOREIGN KEY (`IdMateria`) REFERENCES `materia` (`IdMateria`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
+
+--
+-- Filtros para la tabla `log`
+--
+ALTER TABLE `log`
+  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`User`) REFERENCES `login` (`IdLogin`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

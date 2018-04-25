@@ -1,3 +1,10 @@
+<?php session_start();?>
+<?php 
+    include 'seguridad.php';
+    include 'log.php';
+    checkSID();
+    if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +13,8 @@
   .Botoninsertar{
     text-decoration: none;
     padding: 10px;
-    font-weight: 600;
+    font-weight:
+     600;
     font-size: 20px;
     color: #ffffff;
     background-color: #1883ba;
@@ -24,6 +32,29 @@
         <tr> <th> <p style="color: White" >Insertar Alumno </p></th> </tr>
     </table>
 </h1>
+
+<?php
+        include 'conexion.php';
+       if(isset($_POST['nombre'])){
+        $Nombrev = utf8_decode($_POST['nombre']);
+        $ApellidoPv = utf8_decode($_POST['ApellidoP']);
+        $ApellidoMv = utf8_decode($_POST['ApellidoM']);
+        $conexion = mysqli_connect("localhost","root","","sistemaescolar");
+        if ($Nombrev!="" && $ApellidoPv!=""&& $ApellidoMv!=""){ 
+            $consulta = "INSERT INTO alumno(nombre,apellido_p,apellido_m) values('$Nombrev','$ApellidoPv','$ApellidoMv');";
+        $insertando = mysqli_query($conexion, $consulta);
+        if($insertando)
+        {
+            print("Insertado, todo verde");
+            insertLog($consulta);
+        } 
+        else 
+        {
+            print("No insertado");}
+        }
+        mysqli_close($conexion);}
+?>
+
 <center>
 <p style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -33,10 +64,10 @@ cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
     <div>
-        <form action="insertaralumnoc.php" method="post">
-    <h4>Nombre: <input type="" name="nombre"></h4> 
+        <form action="InsertarAlumno.php" method="post">
+    <h4>Nombre: <input type="" name="nombre" pattern="[A-Za-z Ññ Á-Úá-ú]+" title="El campo sólo puede contener letras."></h4> 
         <table>
-                <tr><th>Apellido paterno: <input type="" name="ApellidoP"></th><th>Apellido Materno: <input type="" name="ApellidoM"></th></tr>
+                <tr><th>Apellido paterno: <input type="" name="ApellidoP" pattern="[A-Za-z Ññ Á-Úá-ú]+" title="El campo sólo puede contener letras."></th><th>Apellido Materno: <input type="" name="ApellidoM" pattern="[A-Za-z Ññ Á-Úá-ú]+" title="El campo sólo puede contener letras."></th></tr>
                 
         </table>
           
@@ -51,6 +82,5 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p style="color: white">Contactanos: 01800 33-fuckyourself  correo: Sistemaescolar.com</p>
     
 
- 
 </body>
 </html>

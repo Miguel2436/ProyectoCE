@@ -1,14 +1,25 @@
+<?php session_start();?>
+<?php 
+	include 'seguridad.php';
+	checkSID();
+	if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <?php
 	include 'conexion.php';
-	$IdCursa = $_POST['IdCursa'];
-
-	$consulta = mysqli_query($conexion, "DELETE FROM cursa where IdCursa ='{$IdCursa}'");
-
-	if($consulta){
-		echo"<script type='text/javascript'>alert('Registro de alumno eliminado'); window.location.href = '/sistemaescolar/delete.php';</script>";
+	include 'log.php';
+	if(isset($_POST["IdCursa"])){	
+		$IdCursa = $_POST['IdCursa'];
+		$query =  "DELETE FROM cursa where IdCursa ='{$IdCursa}'";
+		$consulta = mysqli_query($conexion,$query);
+		insertLog($query);
+		if($consulta){
+			echo"<script type='text/javascript'>alert('Registro de alumno eliminado'); window.location.href = '/sistemaescolar/delete.php';</script>";
+		}else{
+			echo"<script type='text/javascript'>alert('El registro no pudo ser eliminado'); window.location.href = '/sistemaescolar/delete.php';</script>";
+		}
+		mysqli_close($conexion);
 	}else{
-		echo"<script type='text/javascript'>alert('El registro no pudo ser eliminado'); window.location.href = '/sistemaescolar/delete.php';</script>";
+		echo "<script type='text/javascript'>alert('No se encuentra el id solicitado. '); window.location.href = '/sistemaescolar/delete.php';</script> ";
 	}
 	
-	mysqli_close($conexion);
 ?>

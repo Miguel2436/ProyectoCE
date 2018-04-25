@@ -1,6 +1,9 @@
 <?php session_start();?>
-<?php if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}?>
-
+<?php 
+	include 'lib/seguridad.php';
+	checkSID();
+	if(!isset($_SESSION['user'])){header("location:/sistemaescolar/iniciarSesion.html");}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +21,7 @@
 		</div>
 		<h2>Registros de alumnos:</h2>
 		<?php
-			include 'lib/readAlumno.php';
+			ReadAlumno();
 		?>
 		<form action="lib/deleteAlumno.php" method="post">
 			<select name="IdAlumno">
@@ -40,7 +43,7 @@
 		
 		<h2>Registros de calificaciones:</h2>
 		<?php
-			include 'lib/readCursa.php';
+			ReadCursa();
 		?>
 		<form action="lib/deleteCursa.php" method="post">
 			<select name="IdCursa">
@@ -62,7 +65,7 @@
 		
 		<h2>Registros de materias:</h2>
 		<?php
-			include 'lib/readMateria.php';
+			ReadMateria();
 		?>
 		<form action="lib/deleteMateria.php" method="post">
 			<select name="IdMateria">   
