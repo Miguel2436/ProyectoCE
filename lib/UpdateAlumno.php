@@ -44,8 +44,9 @@
 							}
 						}
 						if ($Apellido_M != "") {
-							
-							mysqli_query($conexion, "UPDATE Alumno SET Apellido_M = '{$Apellido_M}' WHERE IdAlumno = '$IdAlumno'");
+							$query="UPDATE Alumno SET Apellido_M = '{$Apellido_M}' WHERE IdAlumno = '$IdAlumno'";
+							mysqli_query($conexion,$query );
+							insertLog($query);
 						}			
 					}
 					else {
