@@ -19,10 +19,36 @@
     border-radius: 6px;
     border: 2px solid #0016b0;
   }
+  .regresar{
+    margin-left: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+        }
+
+        .regresar a{
+            text-decoration: none;
+            background-color: #DA4403;
+            color: #FFFFFF;
+            padding: 5px 10px 5px 10px;
+            font-size: 1.2em;
+            border-radius: 3px;
+        }
+
+        .regresar a:hover{
+            background-color: #D58927;
+        }
 </style>
 </head>
-<body bgcolor="02E0C9">
-
+<body >
+<h1>
+<table bgcolor="13AB91" width="1350"> 
+    
+        <tr> <th> <p style="color: White" >Insertar Alumno </p></th> </tr>
+    </table>
+</h1>
+<div class="regresar">
+        <a href="/sistemaescolar/index.php">Regresar</a>
+        </div>
 <?php 
     ReadMateria();
     include 'conexion.php';
@@ -39,28 +65,19 @@
             insertLog($query);
             if($insertando)
             {
-                echo"<script type='text/javascript'>alert('Inserción realizada correctamente'); window.location.href = '/sistemaescolar/insertar.php';</script>";
+                echo"<script type='text/javascript'>alert('Inserción realizada correctamente'); window.location.href = '/sistemaescolar/lib/insertarMateria.php';</script>";
             } else 
             {
-                  echo"<script type='text/javascript'>alert('Error inesperado '); window.location.href = '/sistemaescolar/insertar.php';</script>";
+                  echo"<script type='text/javascript'>alert('Error al insertar '); window.location.href = '/sistemaescolar/lib/insertarMateria.php';</script>";
             }
         }
     }
     mysqli_close($conexion);
 ?>
 
-<h1>
-<table bgcolor="13AB91" width="1350">  <a class=Botoninsertar href="/sistemaescolar/insertar.php"> Regresar </a>
-        <tr> <th> <p style="color: White" >Insertar Materia </p></th> </tr>
-    </table>
-</h1>
+
 <center>
-<p style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
 
     <div>
         <form action="insertarmateria.php" method="post">
@@ -74,8 +91,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
 </form>
 
-    <br><br>
-<p style="color: white">Contactanos: 01800 33-fuckyourself  correo: Sistemaescolar.com</p>
+ 
     
 
  

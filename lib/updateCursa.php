@@ -75,48 +75,9 @@
 				echo "</table>";*/
 			?>
 			<form align='center' action="UpdateCursa.php" method="POST">
-				Id Cursa: <select name="IdCursa">
-					<?php  
-						//include 'lib/conexion.php';
-
-						$sql = "SELECT IdCursa FROM cursa";
-						$result = mysqli_query($conexion, $sql);
-						  
-						for($i=0; $i<mysqli_num_rows($result); $i++){
-							$fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
-							$IdAlumno = $fila['IdCursa'];
-							echo "<option value='$IdCursa'>$IdCursa ";
-						}
-					?>
-				</select>
-				Id Alumno: <select name="IdAlumno">
-					<?php  
-						//include 'lib/conexion.php';
-
-						$sql = "SELECT IdAlumno FROM alumno";
-						$result = mysqli_query($conexion,$sql);
-						  
-						for($i=0; $i<mysqli_num_rows($result); $i++){
-							$fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
-							$IdAlumno = $fila['IdAlumno'];
-							echo "<option value='$IdAlumno'>$IdAlumno ";
-						}
-					?>
-				</select>
-				Id Materia: <select name="IdMateria">
-					<?php  
-						//include 'lib/conexion.php';
-
-						$sql = "SELECT IdMateria FROM materia";
-						$result = mysqli_query($conexion,$sql);
-						  
-						for($i=0; $i<mysqli_num_rows($result); $i++){
-							$fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
-							$IdMateria = $fila['IdMateria'];
-							echo "<option value='$IdMateria'>$IdMateria ";
-						}
-					?>
-				</select>
+				<input type="text" name="IdCursa" placeholder="IdCursa">
+				<input type="text" name="IdAlumno" placeholder="IdAlumno">
+				<input type="text" name="IdMateria" placeholder="IdMateria">
 				<input type="text" name="Calificacion" placeholder="Calificacion" pattern="[0-9]+" title="El campo sólo puede contener números."><br>
 				<input type="submit" name="Modificar" value="Modificar">
 			</form><br>

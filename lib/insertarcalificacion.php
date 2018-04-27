@@ -19,12 +19,37 @@
         border-radius: 6px;
         border: 2px solid #0016b0;
       }
+      .regresar{
+    margin-left: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+        }
+
+        .regresar a{
+            text-decoration: none;
+            background-color: #DA4403;
+            color: #FFFFFF;
+            padding: 5px 10px 5px 10px;
+            font-size: 1.2em;
+            border-radius: 3px;
+        }
+
+        .regresar a:hover{
+            background-color: #D58927;
+        }
     </style>
     </head>
-    <body bgcolor="02E0C9">
+    <body >
 
-
-
+        <h1>
+        <table bgcolor="13AB91" width="1350"> 
+            
+                <tr> <th> <p style="color: White" >Insertar Alumno </p></th> </tr>
+            </table>
+        </h1>
+        <div class="regresar">
+        <a href="/sistemaescolar/index.php">Regresar</a>
+        </div>
      <?php
     ReadCursa();
     include 'conexion.php';
@@ -41,74 +66,37 @@
             {
                 $consulta = "INSERT INTO cursa(IdAlumno,IdMateria,Calificacion) values('$idAlumnov','$idMateriav','$idCalificacionv');";
                 $insertando = mysqli_query($conexion, $consulta);
-                print("Insertado, todo verde");
+                
                 insertLog($consulta);
                 mysqli_close($conexion);
             } else
             {
-                echo "<script type='text/javascript'>alert('Campo calificacion fuera de rango');</script>";
+                echo "<script type='text/javascript'>alert('Campo calificacion fuera de rango');window.location.href = '/sistemaescolar/lib/insertarCalificacion.php';</script>";
             }
 
-
-            /*if($insertando)
-            {
-                print("Insertado, todo verde");
-            } else
-            {
-                print("No insertado");
-            }*/
+        if($insertando)
+        {
+            echo "<script type='text/javascript'>alert('Calificación insertada');window.location.href = '/sistemaescolar/lib/insertarCalificacion.php';</script>";
+            insertLog($consulta);
+        } 
+        else 
+        {
+            echo "<script type='text/javascript'>alert('Calificación no insertada');window.location.href = '/sistemaescolar/lib/insertarCalificacion.php';</script>";
+        }
         }
     }
     //mysqli_close($conexion);
     ?>
      
-    <h1>
-    <table bgcolor="13AB91" width="1350"> <a class=Botoninsertar href="/sistemaescolar/insertar.php"> Regresar </a>
-            <tr> <th> <p style="color: White" >Insertar Calificación </p></th> </tr>
-        </table>
-    </h1>
+   
     <center>
-    <p style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
 
         <div>
             <form action="insertarcalificacion.php" method="post">
-        <h4>Id Alumno: <select name="idAlumno">
-                <?php
-                    $sql = "SELECT IdAlumno FROM alumno";
-                    $result = mysqli_query($conexion,$sql);
-                      
-                    for($i=0; $i<mysqli_num_rows($result); $i++){
-                        $fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                        $IdAlumno = $fila['IdAlumno'];
-                        echo "<option value='$IdAlumno'>$IdAlumno ";
-                    }
-                ?>
-            </select>
-        </h4>
+        <h4>Id Alumno: <input type="" name="idAlumno"></h4> 
             <table>
-                <tr>
-                    <th>IdMateria: 
-                        <select name="IdMateria">
-                            <?php
-                                $sql = "SELECT IdMateria FROM materia";
-                                $result = mysqli_query($conexion, $sql);
-                                  
-                                for($i=0; $i<mysqli_num_rows($result); $i++){
-                                    $fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                                    $IdMateria = $fila['IdMateria'];
-                                    echo "<option value='$IdMateria'>$IdMateria ";
-                                }
-                            ?>
-                        </select>
-                    </th>
-                    <th>Calificacion: <input type="" name="Calificacion" pattern="[0-9]+" title="El campo sólo puede contener números.">
-                    </th>
-                </tr>           
+                    <tr><th>IdMateria: <input type="" name="IdMateria"></th><th>Calificacion: <input type="" name="Calificacion" pattern="[0-9]+" title="El campo sólo puede contener números."></th></tr>           
             </table>
               
               <input class="Botoninsertar" type = "submit">
@@ -118,7 +106,6 @@
         </div>
     </form>
 
-        <br><br>
-    <p style="color: white">Contactanos: 01800 33-fuckyourself  correo: Sistemaescolar.com</p>
+    
     </body>
 </html>

@@ -31,7 +31,7 @@ body
 	list-style: none;
 }
 
-.contenformulario form input, .opciones a, select
+.contenformulario form input, .opciones a
 {
 	color: gray;
 	display: block;

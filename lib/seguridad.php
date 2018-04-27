@@ -25,10 +25,13 @@
 		$select = "SELECT * FROM alumno";	
 		$resultado = mysqli_query($conexion,$select);
 		
-		if($registro = mysqli_fetch_array($resultado,MYSQLI_ASSOC)) insertLog($select);
-
+		$x=1;
 		while($registro = mysqli_fetch_array($resultado,MYSQLI_ASSOC))
 		{
+			if($x==1)
+			{
+				insertLog($select); $x=0;
+			}
 			$registro['Nombre'] = utf8_encode($registro['Nombre']);
 			$registro['Apellido_P'] = utf8_encode($registro['Apellido_P']);
 			$registro['Apellido_M'] = utf8_encode($registro['Apellido_M']);
@@ -54,10 +57,14 @@
 		$select = "SELECT * FROM cursa";	
 		$resultado = mysqli_query($conexion,$select);
 
-		if($registro = mysqli_fetch_array($resultado,MYSQLI_ASSOC)) insertLog($select);
-
+		
+		$x=1;
 		while($registro = mysqli_fetch_array($resultado,MYSQLI_ASSOC))
 		{
+			if($x==1)
+			{
+				insertLog($select); $x=0;
+			}
 			echo "<tr>";
 			echo "<td style='border: 1px solid black; text-align: center;'>".$registro['IdCursa']."</td>";
 			echo "<td style='border: 1px solid black; text-align: center;'>".$registro['IdAlumno']."</td>";
@@ -79,10 +86,14 @@
 		$select = "SELECT * FROM materia";	
 		$resultado = mysqli_query($conexion,$select);
 		
-		if($registro = mysqli_fetch_array($resultado,MYSQLI_ASSOC)) insertLog($select);
+		$x=1;
 
 		while($registro = mysqli_fetch_array($resultado,MYSQLI_ASSOC))
 		{
+			if($x==1)
+			{
+				insertLog($select); $x=0;
+			}
 			$registro['Nombre'] = utf8_encode($registro['Nombre']);
 
 			echo "<tr>";
