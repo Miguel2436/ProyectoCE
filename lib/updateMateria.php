@@ -20,6 +20,7 @@
     		<h1>Modificar Materia</h1>
 			<?php
 				include 'conexion.php';
+				include 'log.php'
 				if(isset($_POST['IdMateria'])) {
 					$IdMateria = $_POST['IdMateria'];
 					$QueryChecaMateria = "SELECT IdMateria FROM materia WHERE IdMateria = '$IdMateria'";
@@ -27,8 +28,8 @@
 					if (mysqli_num_rows($ResultadoQueryChecaMateria) > 0) {
 						if (isset($_POST['Nombre'])) {
 							$Nombre = utf8_decode($_POST['Nombre']);
-							$QueryUpdateNombre = "UPDATE materia SET Nombre = '".$Nombre."' WHERE IdMateria = '$IdMateria'";
-							if (!mysqli_query($conexion, $QueryUpdateNombre)) {
+							$query = "UPDATE materia SET Nombre = '".$Nombre."' WHERE IdMateria = '$IdMateria'";
+							if (!mysqli_query($conexion, $query)) {
 								echo "<script type='text/javascript'>alert('".mysqli_error($conexion)."');</script>";
 							}
 						}			
