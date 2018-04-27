@@ -58,7 +58,7 @@
 						  
 						for($i=0; $i<mysqli_num_rows($result); $i++){
 							$fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
-							$IdAlumno = $fila['IdMateria'];
+							$IdMateria = $fila['IdMateria'];
 							echo "<option value='$IdMateria'>$IdMateria ";
 						}
 					?>
