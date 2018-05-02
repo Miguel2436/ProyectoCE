@@ -84,6 +84,27 @@
 			<input type="submit" value="Eliminar Registro">
 		</form>
 
+		<h2>Registros de carreras:</h2>
+		<?php
+			ReadCarrera();
+		?>
+		<form action="lib/deleteCarrera.php" method="post">
+			<select name="IdCarrera">   
+			<?php  
+				include 'lib/conexion.php';
+				$sql = "SELECT IdCarrera FROM carrera";
+				$result = mysqli_query($conexion,$sql);
+
+				for($i=0;$i<mysqli_num_rows($result);$i++){
+					$fila = mysqli_fetch_array($result, MYSQLI_ASSOC);
+					$IdCarrera = $fila['IdCarrera'];
+					echo "<option value='$IdCarrera'>$IdCarrera";
+				}
+			?>
+			</select>
+			<input type="submit" value="Eliminar Registro">
+		</form>
+
 	</div>
 </body>
 </html>
